@@ -25,8 +25,8 @@ model 2: bistable toggle switch
 
 as described in the paper
 
-"Efficient construction of Markov state models for gene regulatory networks by domain decomposition"
-by Maryam Yousefian, Anna-Simone Frank, Marcus Weber and Susanna Röblitz, arXiv 2023
+"Efficient construction of Markov state models for stochastic gene regulatory networks by domain decomposition"
+by Maryam Yousefian, Anna-Simone Frank, Marcus Weber and Susanna Röblitz, BioRxiv 2023
 
 Contributer: Maryam Yousefian (maryam.yousefian@uib.no), Susanna Röblitz (susanna.roblitz@uib.no)
 
