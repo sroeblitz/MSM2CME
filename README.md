@@ -52,5 +52,9 @@ The second mat-file contains the matrix `alphaMat`, which has the estimated Diri
 alpha in its rows, and a matrix `Pmle`, which is the maximum likelihood estimate of the transition matrix.
 
 # How to run the code
+
+The code was developed in Matlab 2021b. 
+It might not run properly in older versions because Matlab is not 100% backwards compatible (for example, old versions require array sizes for basic operations to be equal, whereas in new versions they only need to be compatible).
+
 To reproduce the figures from the publication, run either `modelA_results.m` or `modelB_results.m`.
 To construct a new MSM, modify the algorithmic parameters in `toggle_exp1.m` or `macrophage_exp3.m` and run `MSM.m`. 
