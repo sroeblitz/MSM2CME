@@ -13,12 +13,15 @@ nc=2;
 %case A1
     load('Results/model2_seed2_alphaMat__N100__N_ssa500__N_vert0100.mat');
     load('Results/model2_seed2_horSampling__N100__N_ssa500__N_vert0100.mat');
+    N=100;
 %case A2    
     %load('Results/model2_seed2_alphaMat__N100__N_ssa500__N_vert0500.mat');
     %load('Results/model2_seed2_horSampling__N100__N_ssa500__N_vert0500.mat');
+    %N=100;
 %case A3
     %load('Results/model2_seed2_alphaMat__N20__N_ssa500__N_vert0500.mat');
     %load('Results/model2_seed2_horSampling__N20__N_ssa500__N_vert0500.mat');
+    %N=20;
 
     
     target=1+eps;               %target eigenvalue
@@ -28,6 +31,18 @@ nc=2;
     
     %compute average MSM model (maximum likelihood)
     Pmle=diag(1./sum(Pmle,2))*Pmle;
+    
+    %compute statistical weights of Voronoi cells:
+    [pivec,~]=eigs(Pmle',1,1+10*eps);
+    [~,idx]=find(abs(pivec)==max(abs(pivec)));
+    pivec=pivec*sign(pivec(idx));
+    %ovec=max(ovec,eps);
+    pivec=max(pivec,0);
+    pivec=pivec/sum(pivec);
+
+    visualize_density(pivec,voronoi_table,N,s,Nx,Ny)
+ 
+    %compute average MSM model
     [Pc,chi,A,ovec]=computeMSM(Pmle,nc,target,cell_centers',Nx,Ny);
 
     %compute MSM with the mean of the Dirichlet distribution
