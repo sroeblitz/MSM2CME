@@ -14,6 +14,7 @@ nc=3;
     load('Results/model1_seed2_alphaMat__N100__N_ssa500__N_vert0200_tf10.mat');
     load('Results/model1_seed2_horSampling__N100__N_ssa500__N_vert0200_tf10.mat');
     tf=10;
+    N=100;
 % %N=100, Nvert=500, tf=5    
 %     load('Results/model1_seed2_alphaMat__N100__N_ssa500__N_vert0500_tf5.mat');
 %     load('Results/model1_seed2_horSampling__N100__N_ssa500__N_vert0500_tf5.mat');
@@ -33,7 +34,15 @@ nc=3;
     
     %compute average MSM model (maximum likelihood)
     Pmle=diag(1./sum(Pmle,2))*Pmle;
-    [Pc,chi,A,ovec]=computeMSM(Pmle,nc,target,cell_centers',Nx,Ny);
+    [Pc,chi,A,ovec,pi_partial]=computeMSM(Pmle,nc,target,cell_centers',Nx,Ny);
+
+    %visualize partial densities
+    figure(101)
+    visualize_density(pi_partial(:,1),voronoi_table,N,s,Nx,Ny)
+    figure(102)
+    visualize_density(pi_partial(:,2),voronoi_table,N,s,Nx,Ny)
+    figure(103)
+    visualize_density(pi_partial(:,3),voronoi_table,N,s,Nx,Ny)
 
     %compute MSM with the mean of the Dirichlet distrubution
     %P=computeP(alphaMat);
