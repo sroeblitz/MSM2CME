@@ -1,4 +1,4 @@
-function [Pc,chi,A,ovec]=computeMSM(P,nc,target,centers,Nx,Ny)
+function [Pc,chi,A,ovec,pi_partial]=computeMSM(P,nc,target,centers,Nx,Ny)
 
     
 
@@ -99,6 +99,7 @@ function [Pc,chi,A,ovec]=computeMSM(P,nc,target,centers,Nx,Ny)
     for i=1:n
         chic(i,idx(i))=1;
     end
+    pi_partial=[];
     for k=1:nc
         cluster=find(chic(:,k)==1);
         Pk=P(cluster,cluster);
@@ -107,6 +108,7 @@ function [Pc,chi,A,ovec]=computeMSM(P,nc,target,centers,Nx,Ny)
         pik=pik/sum(pik);
         pik_full=zeros(n,1);
         pik_full(cluster)=pik;
+        pi_partial=[pi_partial,pik_full];
         figure(20+k)
         %plot3(centers(1,:),centers(2,:),chi(:,k),'ro')
         %hold on
