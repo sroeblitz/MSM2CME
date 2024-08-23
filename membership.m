@@ -1,4 +1,4 @@
-function [cell_idx] =membership_new(x,voronoi_table,N)
+function [cell_idx] =membership(x,voronoi_table,N)
     
     centers=voronoi_table.centers(1:N,:);
     centers=centers';
