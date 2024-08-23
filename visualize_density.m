@@ -9,7 +9,7 @@ function visualize_density(rho,voronoi_table,N,points,Nx,Ny)
     rho_matrix=zeros(Nx+1,Ny+1); %value of density in every grid point
     for i=0:Nx
         for j=0:Ny
-            cell=membership_new([i;j],voronoi_table,N);
+            cell=membership([i;j],voronoi_table,N);
             idx=find(cells==cell);
             rho_matrix(i+1,j+1)=rho(idx);
         end
